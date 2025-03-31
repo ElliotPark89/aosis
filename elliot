@@ -1,0 +1,54 @@
+import 'dart:io';
+import 'dart:math';
+
+class Character {
+  int health;
+  int attack;
+  int defense;
+
+  Character(this.health, this.attack, this.defense);
+}
+
+class Monster {
+  String name;
+  int health;
+  int attack;
+
+  Monster(this.name, this.health, this.attack);
+}
+
+class Game {
+  Character? character;
+  List<Monster> monsters = [];
+
+  void loadCharacter() {
+    // 캐릭터 스탯을 직접 설정
+    character = Character(50, 10, 5); // 체력: 50, 공격력: 10, 방어력: 5
+  }
+
+  void loadMonsters() {
+    // 몬스터 스탯을 직접 설정
+    monsters.add(Monster("Batman", 30, 20));      // 체력: 30, 공격력: 20
+    monsters.add(Monster("Spiderman", 20, 30));   // 체력: 20, 공격력: 30
+    monsters.add(Monster("Superman", 30, 10));    // 체력: 30, 공격력: 10
+  }
+
+  void startGame() {
+    print('Game started!');
+    if (character != null) {
+      print('Character stats - Health: ${character!.health}, Attack: ${character!.attack}, Defense: ${character!.defense}');
+    } else {
+      print('Character data not loaded.');
+    }
+    for (var monster in monsters) {
+      print('Monster: ${monster.name}, Health: ${monster.health}, Attack: ${monster.attack}');
+    }
+  }
+}
+
+void main() {
+  final game = Game();
+  game.loadCharacter(); // 캐릭터 로드
+  game.loadMonsters();  // 몬스터 로드
+  game.startGame();     // 게임 시작
+}
